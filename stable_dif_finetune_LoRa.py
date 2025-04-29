@@ -16,7 +16,7 @@ from torchmetrics.image.fid import FrechetInceptionDistance
 from torchvision.transforms.functional import to_pil_image
 
 # Load dataset
-image_dir = "flag_images/" #"flag_images_with_env/"
+image_dir = "flag_images_with_env/"
 image_paths = []
 image_names = []
 
@@ -83,42 +83,23 @@ best_fid_score = float("inf")
 best_model_dir = "./best_model"
 log_file = "experiment_results.log"
 
-if image_dir == "flag_images_with_env/":
-    prompts_fid = [
-            "A United States flag in front of a building",
-            "A Turkey flag in the mountains",
-            "A France flag inside a stadium",
-            "A Greece flag in a rural village",
-            "A Spain flag in front of a building",
-            "A Germany flag next to a monument" 
-        ]               
+prompts_fid = [
+        "A United States flag in front of a building",
+        "A Turkey flag in the mountains",
+        "A France flag inside a stadium",
+        "A Greece flag in a rural village",
+        "A Spain flag in front of a building",
+        "A Germany flag next to a monument" 
+    ]               
 
-    real_image_paths = [
-        "flag_images_with_env/United States/United States flag in front of a building_108.jpg",
-        "flag_images_with_env/Turkey/Turkey flag in the mountains_70.jpg",
-        "flag_images_with_env/France/France flag inside a stadium_202.jpg",
-        "flag_images_with_env/Greece/Greece flag in a rural village_255.jpg",
-        "flag_images_with_env/Spain/Spain flag in front of a building_103.jpg",
-        "flag_images_with_env/Germany/Germany flag next to a monument_480.jpg"
-    ]
-elif image_dir == "flag_images/":
-    prompts_fid = [
-            "A United States flag",
-            "A Turkey flag",
-            "A France flag",
-            "A Greece flag",
-            "A Spain flag",
-            "A Germany flag" 
-        ]               
-
-    real_image_paths = [
-        "flag_images/United_States/United States.jpg",
-        "flag_images/Turkey/Turkey.jpg",
-        "flag_images/France/France.jpg",
-        "flag_images/Greece/Greece.jpg",
-        "flag_images/Spain/Spain.jpg",
-        "flag_images/Germany/Germany.jpg"
-    ]
+real_image_paths = [
+    "flag_images_with_env/United States/United States flag in front of a building_108.jpg",
+    "flag_images_with_env/Turkey/Turkey flag in the mountains_70.jpg",
+    "flag_images_with_env/France/France flag inside a stadium_202.jpg",
+    "flag_images_with_env/Greece/Greece flag in a rural village_255.jpg",
+    "flag_images_with_env/Spain/Spain flag in front of a building_103.jpg",
+    "flag_images_with_env/Germany/Germany flag next to a monument_480.jpg"
+]
 # Compute FID for the pretrained model
 model_id = "runwayml/stable-diffusion-v1-5"
 pipe = StableDiffusionPipeline.from_pretrained(model_id).to("cuda")
